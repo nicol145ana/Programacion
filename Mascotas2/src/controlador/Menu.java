@@ -1,6 +1,10 @@
 package controlador;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+
+import modelo.Mascota;
+import vista.Mascotas;
 
 public class Menu {
 
@@ -63,7 +67,7 @@ public class Menu {
 
 		switch (opcion) {
 		case 1: 
-			gestor.andirMascota();
+			gestor.anadirMascota();
 			break;
 		case 2:
 			gestor.mostrarDatos();

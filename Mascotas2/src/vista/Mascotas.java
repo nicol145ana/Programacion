@@ -1,8 +1,11 @@
 package vista;
 
 import controlador.Menu;
+import controlador.ValidacionDatos;
+import modelo.Gato;
+import modelo.Perro;
 
-public class Mascota {
+public class Mascotas {
 
 	public static void main(String[] args) {
 
@@ -13,5 +16,4 @@ public class Mascota {
 		System.out.println(fin);
 
 	}
-
 }
