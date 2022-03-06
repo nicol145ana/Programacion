@@ -59,7 +59,7 @@ public class Menu {
 		System.out.println("	7.- Salir");
 	}
 
-	public void ejecutarOpcion(int opcion) {
+	private void ejecutarOpcion(int opcion) {
 
 		switch (opcion) {
 		case 1: 

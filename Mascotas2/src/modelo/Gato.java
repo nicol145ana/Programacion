@@ -5,15 +5,25 @@ public class Gato extends Mascota{
 	private String color;
 	private char largoPelo;
 
-	public Gato(String nombre, Fecha fecha, String dniDueno, char largoPelo, String color) {
-		super(nombre, fecha, dniDueno);
+	public Gato(String nombre, int edad, Fecha fecha, String dniDueno, char largoPelo, String color) {
+		super(nombre, edad, fecha, dniDueno);
 		this.color = color;
 		this.largoPelo = largoPelo;
 	}
 	
+	public void maulla() {
+		
+	}
+	
+//	@Override
+//	public void come() {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//	
 	@Override
 	public String toString() {
-		return "G" + ", " + super.id + ", " + super.nombre +  ", " + super.fecha + ", " + color + ", " + largoPelo + ", " + super.dniDueno + ";";
+		return "G" + ", " + super.id + ", " + super.nombre + ", " + super.edad + ", " + super.fecha + ", " + color + ", " + largoPelo + ", " + super.dniDueno + ";";
 	}
 
 	public String getColor() {
@@ -31,5 +41,7 @@ public class Gato extends Mascota{
 	public void setLargoPelo(char largoPelo) {
 		this.largoPelo = largoPelo;
 	}
+
+
 	
 }

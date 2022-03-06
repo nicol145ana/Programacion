@@ -14,12 +14,12 @@ public class Gestor {
 	private ValidacionDatos validacion = null;
 
 	public Gestor() {
-		Perro p1 = new Perro("Lur", new Fecha(6,9,2018), "12345679K", "Pastor aleman", false);
-		Perro p2 = new Perro("Beethoven", new Fecha(1,2,2018), "56478936G", "San bernardo", true);
-		Perro p3 = new Perro("Pongo", new Fecha(25,5,2016), "78965847F", "Dalmata", false);
-		Gato g1 = new Gato("Baltzi", new Fecha(1,6,2009), "12345679K", 'L', "Negro");
-		Gato g2 = new Gato("Bola", new Fecha(31,1,2015), "14785469S", 'C', "Tricolor (calicó)");
-		Gato g3 = new Gato("Garfield", new Fecha(31,7,2012), "12345679K", 'M', "Naranja");
+		Perro p1 = new Perro("Lur", 2, new Fecha(6,9,2018), "12345679K", "Pastor aleman", false);
+		Perro p2 = new Perro("Beethoven", 3, new Fecha(1,2,2018), "56478936G", "San bernardo", true);
+		Perro p3 = new Perro("Pongo", 4, new Fecha(25,5,2016), "78965847F", "Dalmata", false);
+		Gato g1 = new Gato("Baltzi", 10, new Fecha(1,6,2009), "12345679K", 'L', "Negro");
+		Gato g2 = new Gato("Bola", 4, new Fecha(31,1,2015), "14785469S", 'C', "Tricolor (calicó)");
+		Gato g3 = new Gato("Garfield", 6, new Fecha(31,7,2012), "12345679K", 'M', "Naranja");
 
 		mascotas = new ArrayList<>(Arrays.asList(p1, g1, p2, p3, g2, g3));
 
@@ -29,21 +29,33 @@ public class Gestor {
 	public String andirMascota() {
 
 		String opcion = "";
-		
+
 		opcion = validacion.leerCaracter("¿Que tipo de mascota deseas insertar? \n1.- Perro(P) \n2.- Gato(G)");
-		
+
 		Mascota mascota = insertar(opcion);
-		
+
 		mascotas.add(mascota);
 
 		return "Su mascota se ha introducido con exito.";
 
 	}
 
+//	Polimorfismo que hemos hechoi en clase
+//	public void iniMascota() {
+//		
+//		Mascota g1 = new Gato("Lizar", 2, new Fecha (2, 12, 2022),  "1234", 'L', "gris");
+//		System.out.println(g1.toString());
+//		((Gato) g1).maulla();
+//		
+//	}
+// 	Clases abstractas son ultiles para el reto
+	
 	private Mascota insertar(String opcion) {
 		Mascota mascota = null;
 
 		String nombre = validacion.leerString("Introduce el nombre de tu mascota: ");
+
+		int edad = validacion.leerEntero("Introduce la edad que tiene tu mascota: ");
 
 		Fecha fecha = introducirFecha();
 
@@ -54,16 +66,16 @@ public class Gestor {
 			String raza = validacion.leerString("Introduce la raza de tu perro: ");
 			boolean pulgas = validacion.validarBoolean("¿Tu perro tiene pulgas S o N? ");
 
-			mascota = new Perro(nombre, fecha, dni, raza, pulgas);
+			mascota = new Perro(nombre, edad, fecha, dni, raza, pulgas);
 
 		}else {
 			char pelo = validacion.validarCaracter("¿El pelo del gato es Largo(L), Corto(C) o Mediano(M)? ");
 			String color = validacion.leerString("Introduce el color del pelo del gato: ");
 
-			mascota = new Gato(nombre, fecha, dni, pelo, color);
+			mascota = new Gato(nombre, edad, fecha, dni, pelo, color);
 
 		}
-		
+
 		return mascota;
 
 	}
@@ -81,28 +93,24 @@ public class Gestor {
 
 	}
 
-	public ArrayList<Mascota> mostrarDatos() {
-				
-		ArrayList<Mascota> totMascotas = new ArrayList<Mascota>();
+	public void mostrarDatos() {
 
 		for(int i=0; i < mascotas.size(); i++) {
-			totMascotas.add(mascotas.get(i));
+			System.out.println(mascotas.get(i));
 		}
-
-		return totMascotas;
 	}
 
-	public String modificarMascota() {
+	public void modificarMascota() {
 
 		int id = validacion.leerEntero("Introduce el id de la mascota: ");
 
 		int indice = comprobarInstancia(id);
 
 		if(indice == -2) {
-			return "No existe una mascota con ese numero de identificacion.";
+			System.out.println("No existe una mascota con ese numero de identificacion.");
 
 		}else {
-			int opcion = validacion.leerRangoEntero("¿Que desea modificar? \n1.- Nombre \n2.- Fecha de nacimiento");
+			int opcion = validacion.leerRangoEntero("¿Que desea modificar? \n1.- Nombre \n2.- Fecha de nacimiento \n3.- Edad");
 
 			if(opcion == 1) {
 				String nombreNuevo = validacion.leerString("Introduce el nuevo nombre de tu mascota: ");
@@ -110,9 +118,12 @@ public class Gestor {
 			}else if(opcion == 2) {
 				Fecha fecha = introducirFecha();
 				((Mascota) mascotas.get(indice)).setFecha(fecha);
+			}else if(opcion == 3){
+				int edad = validacion.leerEntero("Introduce la nueva edad de tu mascota: ");
+				((Mascota) mascotas.get(indice)).setEdad(edad);
 			}
 
-			return "Los datos de su mascota se ha actualizado con exito.";
+			System.out.println("Los datos de su mascota se ha actualizado con exito.");
 
 		}
 
@@ -133,22 +144,22 @@ public class Gestor {
 		return -2;
 	}
 
-	public String eliminarMascota() {
+	public void eliminarMascota() {
 		int id = validacion.leerEntero("Introduce el id de la mascota: ");
 
 		int indice = comprobarInstancia(id);
 
 		if(indice == -2) {
-			return "No existe una mascota con ese numero de identificacion.";
+			System.out.println( "No existe una mascota con ese numero de identificacion.");
 
 		}else {
 			mascotas.remove(indice);
-			return "Su mascota se ha eliminado con exito.";
+			System.out.println("Su mascota se ha eliminado con exito.");
 		}
 
 	}
 
-	public String eliminarMascotaPorDueno() {
+	public void eliminarMascotaPorDueno() {
 
 		String dni = validacion.validarDni("Introduce tu DNI: ");
 
@@ -158,20 +169,18 @@ public class Gestor {
 				i--;
 			}
 		}
-		return "Las mascotas relacionadas con el DNI:" + dni + " se han eliminado.";
+		System.out.println("Las mascotas relacionadas con el DNI:" + dni + " se han eliminado."); 
 
 	}
 
-	public ArrayList<Mascota> buscarMascotasporDueno() {
-		ArrayList<Mascota> mascotasDueno = new ArrayList<Mascota>();
+	public void buscarMascotasporDueno() {
 		String dni = validacion.validarDni("Introduce tu DNI: ");
 
 		for(int i=0; i < mascotas.size(); i++) {
 			if(mascotas.get(i).getDniDueno().equals(dni)) {
-				mascotasDueno.add(mascotas.get(i));
+				System.out.println(mascotas.get(i));
 			}
 		}
-		return mascotasDueno;
 	}
 
 }
