@@ -11,7 +11,6 @@ import modelo.Perro;
 public class Gestor {
 
 	private ArrayList<Mascota> mascotas = null; 
-	private ValidacionDatos validacion = null;
 
 	public Gestor() {
 		Perro p1 = new Perro("Lur", 2, new Fecha(6,9,2018), "12345679K", "Pastor aleman", false);
@@ -23,100 +22,44 @@ public class Gestor {
 
 		mascotas = new ArrayList<>(Arrays.asList(p1, g1, p2, p3, g2, g3));
 
-		validacion = new ValidacionDatos();
 	}
 
-	public String anadirMascota() {
-
-		String opcion = "";
-
-		opcion = validacion.leerCaracter("¿Que tipo de mascota deseas insertar? \n1.- Perro(P) \n2.- Gato(G)");
-
-		Mascota mascota = insertar(opcion);
+	public String anadirMascota(Mascota mascota) {
 
 		mascotas.add(mascota);
 
 		return "Su mascota se ha introducido con exito.";
 
 	}
-	
-	private Mascota insertar(String opcion) {
-		Mascota mascota = null;
 
-		String nombre = validacion.leerString("Introduce el nombre de tu mascota: ");
-
-		int edad = validacion.leerEntero("Introduce la edad que tiene tu mascota: ");
-
-		Fecha fecha = introducirFecha();
-
-		String dni = validacion.validarDni("Introduce tu DNI: ");
-
-		if(opcion.equalsIgnoreCase("P")) {
-
-			String raza = validacion.leerString("Introduce la raza de tu perro: ");
-			boolean pulgas = validacion.validarBoolean("¿Tu perro tiene pulgas S o N? ");
-
-			mascota = new Perro(nombre, edad, fecha, dni, raza, pulgas);
-
-		}else {
-			char pelo = validacion.validarCaracter("¿El pelo del gato es Largo(L), Corto(C) o Mediano(M)? ");
-			String color = validacion.leerString("Introduce el color del pelo del gato: ");
-
-			mascota = new Gato(nombre, edad, fecha, dni, pelo, color);
-
-		}
-
-		return mascota;
-
-	}
-
-	private Fecha introducirFecha() {
-		Fecha fecha = null;
-
-		int dia = validacion.leerEntero("Introduce el dia de nacimiento de tu mascota: ");
-		int mes = validacion.leerEntero("Introduce el mes de nacimiento de tu mascota: ");
-		int ano = validacion.leerEntero("Introduce el año de nacimiento de tu mascota");
-
-		fecha = new Fecha(ano, mes, dia);
-
-		return fecha;
-
-	}
-
-	public void mostrarDatos() {
-
+	public ArrayList<Mascota> mostrarDatos() {
+		ArrayList<Mascota> totMascotas = new ArrayList<Mascota>();
 		for(int i=0; i < mascotas.size(); i++) {
-			System.out.println(mascotas.get(i));
+			totMascotas.add(mascotas.get(i));
 		}
+		
+		return totMascotas;
 	}
 
-	public void modificarMascota() {
-
-		int id = validacion.leerEntero("Introduce el id de la mascota: ");
-
+	public String modificarMascota(int id, Object objeto, int opcion) {
+		
 		int indice = comprobarInstancia(id);
-
 		if(indice == -2) {
-			System.out.println("No existe una mascota con ese numero de identificacion.");
-
+			return "No existe una mascota con ese numero de identificacion.";
 		}else {
-			int opcion = validacion.leerRangoEntero("¿Que desea modificar? \n1.- Nombre \n2.- Fecha de nacimiento \n3.- Edad");
-
 			if(opcion == 1) {
-				String nombreNuevo = validacion.leerString("Introduce el nuevo nombre de tu mascota: ");
+				String nombreNuevo = (String) objeto;
 				((Mascota) mascotas.get(indice)).setNombre(nombreNuevo);
 			}else if(opcion == 2) {
-				Fecha fecha = introducirFecha();
+				Fecha fecha = (Fecha) objeto;
 				((Mascota) mascotas.get(indice)).setFecha(fecha);
 			}else if(opcion == 3){
-				int edad = validacion.leerEntero("Introduce la nueva edad de tu mascota: ");
+				int edad = (int) objeto;
 				((Mascota) mascotas.get(indice)).setEdad(edad);
 			}
 
-			System.out.println("Los datos de su mascota se ha actualizado con exito.");
-
+			return "Los datos de su mascota se ha actualizado con exito.";
 		}
-
 	}
 
 	private int comprobarInstancia(int id) {
@@ -134,43 +77,38 @@ public class Gestor {
 		return -2;
 	}
 
-	public void eliminarMascota() {
-		int id = validacion.leerEntero("Introduce el id de la mascota: ");
-
+	public String eliminarMascota(int id) {
 		int indice = comprobarInstancia(id);
 
 		if(indice == -2) {
-			System.out.println( "No existe una mascota con ese numero de identificacion.");
+			return "No existe una mascota con ese numero de identificacion.";
 
 		}else {
 			mascotas.remove(indice);
-			System.out.println("Su mascota se ha eliminado con exito.");
+			return "Su mascota se ha eliminado con exito.";
 		}
-
 	}
 
-	public void eliminarMascotaPorDueno() {
-
-		String dni = validacion.validarDni("Introduce tu DNI: ");
-
+	public String eliminarMascotaPorDueno(String dni) {
 		for(int i=0; i < mascotas.size(); i++) {
 			if(mascotas.get(i).getDniDueno().equals(dni)) {
 				mascotas.remove(i);
 				i--;
 			}
 		}
-		System.out.println("Las mascotas relacionadas con el DNI:" + dni + " se han eliminado."); 
+		return "Las mascotas relacionadas con el DNI:" + dni + " se han eliminado."; 
 
 	}
 
-	public void buscarMascotasporDueno() {
-		String dni = validacion.validarDni("Introduce tu DNI: ");
-
+	public ArrayList<Mascota> buscarMascotasporDueno(String dni) {
+		ArrayList<Mascota> totMascotasDueno = new ArrayList<Mascota>();
+		
 		for(int i=0; i < mascotas.size(); i++) {
 			if(mascotas.get(i).getDniDueno().equals(dni)) {
-				System.out.println(mascotas.get(i));
+				totMascotasDueno.add(mascotas.get(i));
 			}
 		}
+		return totMascotasDueno;
 	}
 
 }

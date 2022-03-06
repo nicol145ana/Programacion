@@ -10,6 +10,7 @@ public class Menu {
 
 	private Scanner teclado = null;
 	private Gestor gestor = null;
+	private Mascotas mascotas = new Mascotas();
 
 	public Menu() {
 		teclado = new Scanner (System.in);
@@ -64,25 +65,40 @@ public class Menu {
 	}
 
 	private void ejecutarOpcion(int opcion) {
-
+		String dni;	
+		String resultado;
+		int id;
+		
 		switch (opcion) {
 		case 1: 
-			gestor.anadirMascota();
+			Mascota mascota = mascotas.pedirDatosMascota();
+			resultado = gestor.anadirMascota(mascota);
+			mascotas.imprimirCadena(resultado);
 			break;
 		case 2:
-			gestor.mostrarDatos();
+			ArrayList<Mascota> totMascotas = gestor.mostrarDatos();
+			mascotas.imprimirMascotas(totMascotas);
 			break;
 		case 3:
-			gestor.modificarMascota();
+			id = mascotas.pedirId();
+			int op = mascotas.escogerQueModificar();
+			resultado = gestor.modificarMascota(id, mascotas.pedirDtosModificar(op), op);
+			mascotas.imprimirCadena(resultado);
 			break;
 		case 4:
-			gestor.eliminarMascota();
+			id = mascotas.pedirId();
+			resultado = gestor.eliminarMascota(id);
+			mascotas.imprimirCadena(resultado);
 			break;
 		case 5:
-			gestor.eliminarMascotaPorDueno();
+			dni = mascotas.pedirDni();
+			resultado = gestor.eliminarMascotaPorDueno(dni);
+			mascotas.imprimirCadena(resultado);
 			break;
 		case 6:
-			gestor.buscarMascotasporDueno();
+			dni = mascotas.pedirDni();
+			ArrayList<Mascota> totMascotasDueno = gestor.buscarMascotasporDueno(dni);
+			mascotas.imprimirMascotas(totMascotasDueno);
 			break;
 		}
 	}
