@@ -26,7 +26,7 @@ public class Gestor {
 		validacion = new ValidacionDatos();
 	}
 
-	public String andirMascota() {
+	public String anadirMascota() {
 
 		String opcion = "";
 
