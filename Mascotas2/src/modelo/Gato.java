@@ -14,13 +14,7 @@ public class Gato extends Mascota{
 	public void maulla() {
 		
 	}
-	
-//	@Override
-//	public void come() {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//	
+
 	@Override
 	public String toString() {
 		return "G" + ", " + super.id + ", " + super.nombre + ", " + super.edad + ", " + super.fecha + ", " + color + ", " + largoPelo + ", " + super.dniDueno + ";";
@@ -41,7 +35,4 @@ public class Gato extends Mascota{
 	public void setLargoPelo(char largoPelo) {
 		this.largoPelo = largoPelo;
 	}
-
-
-	
 }

@@ -18,12 +18,6 @@ public class Perro extends Mascota{
 			return "N";
 		}
 	}
-	
-//	@Override
-//	public void come() {
-//		// TODO Auto-generated method stub
-//		
-//	}
 
 	@Override
 	public String toString() {
@@ -45,5 +39,4 @@ public class Perro extends Mascota{
 	public void setPulgas(boolean pulgas) {
 		this.pulgas = pulgas;
 	}
-
 }

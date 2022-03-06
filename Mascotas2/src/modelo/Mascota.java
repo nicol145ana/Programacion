@@ -1,7 +1,6 @@
 package modelo;
 
 public class Mascota {
-//public abstract class Mascota {
 
 
 	protected static int identificador = 0;
@@ -19,9 +18,7 @@ public class Mascota {
 		this.fecha = fecha;
 		this.dniDueno = dniDueno;
 	}
-	
-//	public abstract void come();
-	
+		
 	@Override
 	public String toString() {
 		return id + ", " + nombre + ", " + edad + ", " + fecha + ", " + dniDueno ;

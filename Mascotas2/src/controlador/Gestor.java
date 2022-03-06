@@ -39,16 +39,6 @@ public class Gestor {
 		return "Su mascota se ha introducido con exito.";
 
 	}
-
-//	Polimorfismo que hemos hechoi en clase
-//	public void iniMascota() {
-//		
-//		Mascota g1 = new Gato("Lizar", 2, new Fecha (2, 12, 2022),  "1234", 'L', "gris");
-//		System.out.println(g1.toString());
-//		((Gato) g1).maulla();
-//		
-//	}
-// 	Clases abstractas son ultiles para el reto
 	
 	private Mascota insertar(String opcion) {
 		Mascota mascota = null;
