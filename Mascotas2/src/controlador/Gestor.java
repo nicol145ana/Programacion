@@ -13,12 +13,12 @@ public class Gestor {
 	private ArrayList<Mascota> mascotas = null; 
 
 	public Gestor() {
-		Perro p1 = new Perro("Lur", 2, new Fecha(6,9,2018), "12345679K", "Pastor aleman", false);
-		Perro p2 = new Perro("Beethoven", 3, new Fecha(1,2,2018), "56478936G", "San bernardo", true);
-		Perro p3 = new Perro("Pongo", 4, new Fecha(25,5,2016), "78965847F", "Dalmata", false);
-		Gato g1 = new Gato("Baltzi", 10, new Fecha(1,6,2009), "12345679K", 'L', "Negro");
-		Gato g2 = new Gato("Bola", 4, new Fecha(31,1,2015), "14785469S", 'C', "Tricolor (calicó)");
-		Gato g3 = new Gato("Garfield", 6, new Fecha(31,7,2012), "12345679K", 'M', "Naranja");
+		Perro p1 = new Perro("Lur", new Fecha(6,9,2018), "12345679K", "Pastor aleman", false);
+		Perro p2 = new Perro("Beethoven", new Fecha(1,2,2018), "56478936G", "San bernardo", true);
+		Perro p3 = new Perro("Pongo", new Fecha(25,5,2016), "78965847F", "Dalmata", false);
+		Gato g1 = new Gato("Baltzi", new Fecha(1,6,2009), "12345679K", 'L', "Negro");
+		Gato g2 = new Gato("Bola", new Fecha(31,1,2015), "14785469S", 'C', "Tricolor (calicó)");
+		Gato g3 = new Gato("Garfield", new Fecha(31,7,2012), "12345679K", 'M', "Naranja");
 
 		mascotas = new ArrayList<>(Arrays.asList(p1, g1, p2, p3, g2, g3));
 
@@ -53,9 +53,6 @@ public class Gestor {
 			}else if(opcion == 2) {
 				Fecha fecha = (Fecha) objeto;
 				((Mascota) mascotas.get(indice)).setFecha(fecha);
-			}else if(opcion == 3){
-				int edad = (int) objeto;
-				((Mascota) mascotas.get(indice)).setEdad(edad);
 			}
 
 			return "Los datos de su mascota se ha actualizado con exito.";

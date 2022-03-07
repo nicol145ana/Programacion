@@ -5,8 +5,8 @@ public class Gato extends Mascota{
 	private String color;
 	private char largoPelo;
 
-	public Gato(String nombre, int edad, Fecha fecha, String dniDueno, char largoPelo, String color) {
-		super(nombre, edad, fecha, dniDueno);
+	public Gato(String nombre, Fecha fecha, String dniDueno, char largoPelo, String color) {
+		super(nombre, fecha, dniDueno);
 		this.color = color;
 		this.largoPelo = largoPelo;
 	}
@@ -17,7 +17,7 @@ public class Gato extends Mascota{
 
 	@Override
 	public String toString() {
-		return "G" + ", " + super.id + ", " + super.nombre + ", " + super.edad + ", " + super.fecha + ", " + color + ", " + largoPelo + ", " + super.dniDueno + ";";
+		return "G" + ", " + super.id + ", " + super.nombre + ", " + super.fecha + ", " + color + ", " + largoPelo + ", " + super.dniDueno + ";";
 	}
 
 	public String getColor() {

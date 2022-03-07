@@ -41,7 +41,7 @@ public class ValidacionDatos {
 				teclado.nextLine();
 				control = false;
 			}
-		}while(control == false || eleccion <= 0 || eleccion > 3);
+		}while(control == false || eleccion <= 0 || eleccion > 2);
 
 		return eleccion;
 	}

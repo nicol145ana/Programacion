@@ -26,19 +26,18 @@ public class Mascotas {
 
 		String opcion = validacion.leerCaracter("¿Que tipo de mascota deseas insertar? \n1.- Perro(P) \n2.- Gato(G)");
 		String nombre = validacion.leerString("Introduce el nombre de tu mascota: ");
-		int edad = validacion.leerEntero("Introduce la edad que tiene tu mascota: ");
 		Fecha fecha = pedirFachaNaMascota();
 		String dni = validacion.validarDni("Introduce tu DNI: ");
 
 		if(opcion.equalsIgnoreCase("P")) {
 			String raza = validacion.leerString("Introduce la raza de tu perro: ");
 			boolean pulgas = validacion.validarBoolean("¿Tu perro tiene pulgas S o N? ");
-			mascota = new Perro(nombre, edad, fecha, dni, raza, pulgas);
+			mascota = new Perro(nombre, fecha, dni, raza, pulgas);
 
 		}else {
 			char pelo = validacion.validarCaracter("¿El pelo del gato es Largo(L), Corto(C) o Mediano(M)? ");
 			String color = validacion.leerString("Introduce el color del pelo del gato: ");
-			mascota = new Gato(nombre, edad, fecha, dni, pelo, color);
+			mascota = new Gato(nombre, fecha, dni, pelo, color);
 		}
 		return mascota;
 	}
@@ -97,7 +96,7 @@ public class Mascotas {
 
 	public int escogerQueModificar() {
 		ValidacionDatos validacion = new ValidacionDatos();
-		int opcion = validacion.leerRangoEntero("¿Que desea modificar? \n1.- Nombre \n2.- Fecha de nacimiento \n3.- Edad");
+		int opcion = validacion.leerRangoEntero("¿Que desea modificar? \n1.- Nombre \n2.- Fecha de nacimiento");
 		return opcion;
 	}
 
