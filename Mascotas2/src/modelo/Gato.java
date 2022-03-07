@@ -17,7 +17,7 @@ public class Gato extends Mascota{
 
 	@Override
 	public String toString() {
-		return "G" + ", " + super.id + ", " + super.nombre + ", " + super.fecha + ", " + color + ", " + largoPelo + ", " + super.dniDueno + ";";
+		return "G" + ", " + super.id + ", " + super.nombre + ", "+ super.calcularEdad() + ", " + super.fecha + ", " + color + ", " + largoPelo + ", " + super.dniDueno + ";";
 	}
 
 	public String getColor() {

@@ -20,7 +20,7 @@ public class Mascota {
 		this.dniDueno = dniDueno;
 	}
 	
-	private int calcularEdad() {
+	public int calcularEdad() {
 		
 		LocalDate fechaActual = LocalDate.now();
 		String fechaN = String.valueOf(this.fecha.getDia()).concat("-" + String.valueOf(this.fecha.getMes()) + "-" + String.valueOf(this.fecha.getAno()));

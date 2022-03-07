@@ -42,7 +42,6 @@ public class Gestor {
 	}
 
 	public String modificarMascota(int id, Object objeto, int opcion) {
-		
 		int indice = comprobarInstancia(id);
 		if(indice == -2) {
 			return "No existe una mascota con ese numero de identificacion.";

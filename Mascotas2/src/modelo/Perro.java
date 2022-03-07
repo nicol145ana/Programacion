@@ -21,7 +21,7 @@ public class Perro extends Mascota{
 
 	@Override
 	public String toString() {
-		return "P"  + ", " + super.id + ", " + super.nombre + ", " + super.fecha + ", " + raza + ", " + pulgas() + ", " + super.dniDueno + ";";
+		return "P"  + ", " + super.id + ", " + super.nombre + ", " + super.calcularEdad() + ", " + super.fecha + ", " + raza + ", " + pulgas() + ", " + super.dniDueno + ";";
 	}
 	
 	public String getRaza() {
