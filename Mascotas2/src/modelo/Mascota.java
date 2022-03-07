@@ -20,7 +20,7 @@ public class Mascota {
 		this.dniDueno = dniDueno;
 	}
 	
-	private void calcularEdad() {
+	private int calcularEdad() {
 		
 		LocalDate fechaActual = LocalDate.now();
 		String fechaN = String.valueOf(this.fecha.getDia()).concat("-" + String.valueOf(this.fecha.getMes()) + "-" + String.valueOf(this.fecha.getAno()));
@@ -29,12 +29,12 @@ public class Mascota {
 		LocalDate fechaNacimiento = LocalDate.parse(fechaN, formatter);
 
 		int edad = fechaActual.getYear() - fechaNacimiento.getYear();
-
+		return edad;
 	}
 		
 	@Override
 	public String toString() {
-		return id + ", " + nombre + ", " + fecha + ", " + dniDueno ;
+		return id + ", " + nombre + ", " + calcularEdad() + ", " + fecha + ", " + dniDueno ;
 	}
 
 	public int getId() {
