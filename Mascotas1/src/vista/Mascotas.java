@@ -43,7 +43,7 @@ public class Mascotas {
 		return mascota;
 	}
 
-	private Fecha pedirFachaNaMascota() {
+	public Fecha pedirFachaNaMascota() {
 		Fecha fecha = null;
 		ValidacionDatos validacion = new ValidacionDatos();
 
@@ -79,25 +79,10 @@ public class Mascotas {
 		System.out.println(cadena);
 	}
 
-	public Object pedirDtosModificar(int opcion) {
-		ValidacionDatos validacion = new ValidacionDatos();
-
-		if(opcion == 1) {
-			String nombreNuevo = validacion.leerString("Introduce el nuevo nombre de tu mascota: ");
-			return nombreNuevo;
-		}else if(opcion == 2) {
-			Fecha fecha = pedirFachaNaMascota();
-			return fecha;
-		}else if(opcion == 3){
-			int edad = validacion.leerEntero("Introduce la nueva edad de tu mascota: ");
-			return edad;
-		}
-		return 0;
-	}
-
-	public int escogerQueModificar() {
+	public int pedirQueModificar() {
 		ValidacionDatos validacion = new ValidacionDatos();
 		int opcion = validacion.leerRangoEntero("¿Que desea modificar? \n1.- Nombre \n2.- Fecha de nacimiento \n3.- Edad");
+
 		return opcion;
 	}
 

@@ -81,8 +81,8 @@ public class Menu {
 			break;
 		case 3:
 			id = mascotas.pedirId();
-			int op = mascotas.escogerQueModificar();
-			resultado = gestor.modificarMascota(id, mascotas.pedirDtosModificar(op), op);
+			int op = mascotas.pedirQueModificar();
+			resultado = gestor.modificarMascota(id, opcion, mascotas.pedirFachaNaMascota());
 			mascotas.imprimirCadena(resultado);
 			break;
 		case 4:

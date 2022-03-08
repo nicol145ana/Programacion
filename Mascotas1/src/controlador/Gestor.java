@@ -41,20 +41,20 @@ public class Gestor {
 		return totMascotas;
 	}
 
-	public String modificarMascota(int id, Object objeto, int opcion) {
-		
+	public String modificarMascota(int id, int opcion, Fecha fechaNueva) {
+		ValidacionDatos validacion = new ValidacionDatos();
 		int indice = comprobarInstancia(id);
 		if(indice == -2) {
 			return "No existe una mascota con ese numero de identificacion.";
 		}else {
 			if(opcion == 1) {
-				String nombreNuevo = (String) objeto;
+				String nombreNuevo = validacion.leerString("Introduce el nuevo nombre de tu mascota: ");
 				((Mascota) mascotas.get(indice)).setNombre(nombreNuevo);
 			}else if(opcion == 2) {
-				Fecha fecha = (Fecha) objeto;
+				Fecha fecha = fechaNueva;
 				((Mascota) mascotas.get(indice)).setFecha(fecha);
 			}else if(opcion == 3){
-				int edad = (int) objeto;
+				int edad = validacion.leerEntero("Introduce la nueva edad de tu mascota: ");
 				((Mascota) mascotas.get(indice)).setEdad(edad);
 			}
 
