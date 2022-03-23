@@ -91,9 +91,7 @@ public class Gestor {
 				System.out.println("El departamento introducido no existe.");
 			}
 			break;
-
 		}
-
 	}
 
 	private boolean comprobarDepartamento(String depart) {
@@ -122,9 +120,7 @@ public class Gestor {
 				}
 			}
 			opcion = validacion.leerEntero("Elige una de las opciones");
-
 		}while(opcion < 1 || opcion > 3);
-
 		return opcion;
 	}
 
@@ -146,16 +142,13 @@ public class Gestor {
 					}
 				}
 			}
-
 		}
 		return 0;
 	}
 
 	public void darBaja() {
 		int idPersona = validacion.leerEntero("Introduce el id del usuario: ");
-
 		int indice = verificarInstancia(idPersona);
-
 		personas.remove(indice);
 
 	}
@@ -163,5 +156,6 @@ public class Gestor {
 	public void imprimir() {
 		for(int i = 0; i < personas.size(); i++) {
             System.out.println(personas.get(i).toString());
-        }	}
+        }	
+	}
 }
